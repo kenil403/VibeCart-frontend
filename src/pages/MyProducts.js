@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { getImageUrl } from '../utils/imageUrl';
 import './MyProducts.css';
 
 function MyProducts() {
@@ -14,7 +15,7 @@ function MyProducts() {
 
   const fetchMyProducts = async () => {
     try {
-      const response = await axios.get('/api/products/my/products');
+      const response = await axios.get('https://vibecart-backend.onrender.com/api/products/my/products');
       setProducts(response.data.data);
       setLoading(false);
     } catch (err) {
@@ -30,7 +31,7 @@ function MyProducts() {
     }
 
     try {
-      await axios.delete(`/api/products/${id}`);
+      await axios.delete(`https://vibecart-backend.onrender.com/api/products/${id}`);
       setProducts(products.filter(product => product._id !== id));
     } catch (err) {
       alert('Failed to delete product');
@@ -64,7 +65,7 @@ function MyProducts() {
               <div key={product._id} className="my-product-card">
                 <div className="product-card-image">
                   <img 
-                    src={product.image || 'https://via.placeholder.com/300'} 
+                    src={getImageUrl(product.image)} 
                     alt={product.name} 
                   />
                   {!product.isPublic && (

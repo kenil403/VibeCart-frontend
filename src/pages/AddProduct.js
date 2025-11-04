@@ -38,7 +38,7 @@ function AddProduct() {
     setErrors([]);
 
     try {
-      const response = await axios.post('/api/products', {
+      const response = await axios.post('https://vibecart-backend.onrender.com/api/products', {
         ...formData,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock) || 0

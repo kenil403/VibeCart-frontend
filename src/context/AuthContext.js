@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   // Load user data
   const loadUser = async () => {
     try {
-      const response = await axios.get('/api/auth/me');
+      const response = await axios.get('https://vibecart-backend.onrender.com/api/auth/me');
       setUser(response.data.data);
     } catch (error) {
       console.error('Load user error:', error);
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   // Signup
   const signup = async (name, email, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
+      const response = await axios.post('https://vibecart-backend.onrender.com/api/auth/signup', {
         name,
         email,
         password
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   // Login
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', {
+      const response = await axios.post('https://vibecart-backend.onrender.com/api/auth/login', {
         email,
         password
       });
@@ -104,7 +104,7 @@ export const AuthProvider = ({ children }) => {
   // Update profile
   const updateProfile = async (name, email) => {
     try {
-      const response = await axios.put('/api/auth/updateprofile', {
+      const response = await axios.put('https://vibecart-backend.onrender.com/api/auth/updateprofile', {
         name,
         email
       });

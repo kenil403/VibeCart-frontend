@@ -44,7 +44,7 @@ function ImageUpload({ onImageUpload, multiple = false, maxFiles = 5 }) {
       const token = localStorage.getItem('token');
       const endpoint = multiple ? '/api/upload/multiple' : '/api/upload/single';
       
-      const response = await axios.post(`http://localhost:5000${endpoint}`, formData, {
+      const response = await axios.post(`https://vibecart-backend.onrender.com${endpoint}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
@@ -53,8 +53,8 @@ function ImageUpload({ onImageUpload, multiple = false, maxFiles = 5 }) {
 
       if (response.data.success) {
         const uploadedUrls = multiple 
-          ? response.data.data.map(file => `http://localhost:5000${file.url}`)
-          : `http://localhost:5000${response.data.data.url}`;
+          ? response.data.data.map(file => `https://vibecart-backend.onrender.com${file.url}`)
+          : `https://vibecart-backend.onrender.com${response.data.data.url}`;
         
         // Set preview
         if (multiple) {

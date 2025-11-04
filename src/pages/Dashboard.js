@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { getImageUrl } from '../utils/imageUrl';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -39,7 +40,7 @@ function Dashboard() {
         return;
       }
 
-      const response = await axios.get('/api/products/my/products', {
+      const response = await axios.get('https://vibecart-backend.onrender.com/api/products/my/products', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -79,7 +80,7 @@ function Dashboard() {
     }
 
     try {
-      await axios.delete(`/api/products/${id}`);
+      await axios.delete(`https://vibecart-backend.onrender.com/api/products/${id}`);
       setProducts(products.filter(product => product._id !== id));
       // Recalculate stats
       fetchDashboardData();
@@ -231,7 +232,7 @@ function Dashboard() {
                       <td>
                         <div className="product-cell">
                           <img 
-                            src={product.image || 'https://via.placeholder.com/50'} 
+                            src={getImageUrl(product.image)} 
                             alt={product.name}
                             className="product-thumb"
                           />

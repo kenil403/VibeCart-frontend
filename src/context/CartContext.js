@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
     setError(null);
     
     try {
-      const response = await axios.get('http://localhost:5000/api/cart', {
+      const response = await axios.get('https://vibecart-backend.onrender.com/api/cart', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -53,7 +53,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/cart/add',
+        'https://vibecart-backend.onrender.com/api/cart/add',
         { productId, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -81,7 +81,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/cart/update/${productId}`,
+        `https://vibecart-backend.onrender.com/api/cart/update/${productId}`,
         { quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -109,7 +109,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/cart/remove/${productId}`,
+        `https://vibecart-backend.onrender.com/api/cart/remove/${productId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -136,7 +136,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await axios.delete(
-        'http://localhost:5000/api/cart/clear',
+        'https://vibecart-backend.onrender.com/api/cart/clear',
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

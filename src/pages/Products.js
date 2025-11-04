@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { getImageUrl } from '../utils/imageUrl';
 import './Products.css';
 
 function Products() {
@@ -14,7 +15,7 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get('https://vibecart-backend.onrender.com/api/products');
       setProducts(response.data.data || response.data);
       setLoading(false);
     } catch (err) {
@@ -41,7 +42,7 @@ function Products() {
               <div key={product._id} className="product-card">
                 <div className="product-image">
                   <img 
-                    src={product.image || 'https://via.placeholder.com/300'} 
+                    src={getImageUrl(product.image)} 
                     alt={product.name} 
                   />
                 </div>

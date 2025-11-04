@@ -29,7 +29,7 @@ function EditProduct() {
 
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`/api/products/${id}`);
+      const response = await axios.get(`https://vibecart-backend.onrender.com/api/products/${id}`);
       const product = response.data.data;
       
       setFormData({
@@ -67,7 +67,7 @@ function EditProduct() {
     setErrors([]);
 
     try {
-      const response = await axios.put(`/api/products/${id}`, {
+      const response = await axios.put(`https://vibecart-backend.onrender.com/api/products/${id}`, {
         ...formData,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock)

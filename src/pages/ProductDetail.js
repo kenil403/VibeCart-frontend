@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { getImageUrl } from '../utils/imageUrl';
 import './ProductDetail.css';
 
 function ProductDetail() {
@@ -22,7 +23,7 @@ function ProductDetail() {
 
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`/api/products/${id}`);
+      const response = await axios.get(`https://vibecart-backend.onrender.com/api/products/${id}`);
       setProduct(response.data.data || response.data);
       setLoading(false);
     } catch (err) {
@@ -44,7 +45,7 @@ function ProductDetail() {
         <div className="product-detail">
           <div className="product-detail-image">
             <img 
-              src={product.image || 'https://via.placeholder.com/500'} 
+              src={getImageUrl(product.image)} 
               alt={product.name} 
             />
           </div>

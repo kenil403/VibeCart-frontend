@@ -91,7 +91,7 @@ function Dashboard() {
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit-product/${id}`);
+    navigate(`/products/edit/${id}`);
   };
 
   if (authLoading || loading) {

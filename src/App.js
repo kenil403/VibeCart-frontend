@@ -26,6 +26,14 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
+                <Route 
+                  path="/products/add" 
+                  element={
+                    <PrivateRoute>
+                      <AddProduct />
+                    </PrivateRoute>
+                  } 
+                />
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route 
                   path="/cart" 
@@ -52,15 +60,7 @@ function App() {
                   } 
                 />
                 <Route 
-                  path="/add-product" 
-                  element={
-                    <PrivateRoute>
-                      <AddProduct />
-                    </PrivateRoute>
-                  } 
-                />
-                <Route 
-                  path="/edit-product/:id" 
+                  path="/products/edit/:id" 
                   element={
                     <PrivateRoute>
                       <EditProduct />

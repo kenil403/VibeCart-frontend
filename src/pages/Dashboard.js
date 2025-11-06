@@ -235,6 +235,10 @@ function Dashboard() {
                             src={getImageUrl(product.image)} 
                             alt={product.name}
                             className="product-thumb"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = 'https://via.placeholder.com/50x50/667eea/ffffff?text=' + encodeURIComponent(product.name.charAt(0));
+                            }}
                           />
                           <span className="product-name">{product.name}</span>
                         </div>

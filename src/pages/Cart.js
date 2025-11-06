@@ -80,6 +80,10 @@ const Cart = () => {
                 src={getImageUrl(item.product.image)}
                 alt={item.product.name}
                 className="item-image"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/100x100/667eea/ffffff?text=' + encodeURIComponent(item.product.name);
+                }}
               />
               
               <div className="item-details">

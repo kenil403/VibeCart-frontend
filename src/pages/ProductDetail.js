@@ -46,7 +46,11 @@ function ProductDetail() {
           <div className="product-detail-image">
             <img 
               src={getImageUrl(product.image)} 
-              alt={product.name} 
+              alt={product.name}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://via.placeholder.com/500x500/667eea/ffffff?text=' + encodeURIComponent(product.name);
+              }}
             />
           </div>
           

@@ -66,7 +66,11 @@ function MyProducts() {
                 <div className="product-card-image">
                   <img 
                     src={getImageUrl(product.image)} 
-                    alt={product.name} 
+                    alt={product.name}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://via.placeholder.com/300x300/667eea/ffffff?text=' + encodeURIComponent(product.name);
+                    }}
                   />
                   {!product.isPublic && (
                     <span className="private-badge">Private</span>

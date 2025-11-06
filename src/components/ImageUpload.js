@@ -42,9 +42,10 @@ function ImageUpload({ onImageUpload, multiple = false, maxFiles = 5 }) {
       }
 
       const token = localStorage.getItem('token');
+      const API_BASE_URL = process.env.REACT_APP_API_URL?.replace('/api', '') || 'https://vibecart-backend.onrender.com';
       const endpoint = multiple ? '/api/upload/multiple' : '/api/upload/single';
       
-      const response = await axios.post(`https://vibecart-backend.onrender.com${endpoint}`, formData, {
+      const response = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
@@ -52,9 +53,10 @@ function ImageUpload({ onImageUpload, multiple = false, maxFiles = 5 }) {
       });
 
       if (response.data.success) {
+        // Images are now returned as Base64 strings, no need to prepend backend URL
         const uploadedUrls = multiple 
-          ? response.data.data.map(file => `https://vibecart-backend.onrender.com${file.url}`)
-          : `https://vibecart-backend.onrender.com${response.data.data.url}`;
+          ? response.data.data.map(file => file.url)
+          : response.data.data.url;
         
         // Set preview
         if (multiple) {

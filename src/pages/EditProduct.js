@@ -29,7 +29,8 @@ function EditProduct() {
 
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`https://vibecart-backend.onrender.com/api/products/${id}`);
+      const API_URL = process.env.REACT_APP_API_URL || 'https://vibecart-backend.onrender.com/api';
+      const response = await axios.get(`${API_URL}/products/${id}`);
       const product = response.data.data;
       
       setFormData({
@@ -67,10 +68,18 @@ function EditProduct() {
     setErrors([]);
 
     try {
-      const response = await axios.put(`https://vibecart-backend.onrender.com/api/products/${id}`, {
+      const token = localStorage.getItem('token');
+      const API_URL = process.env.REACT_APP_API_URL || 'https://vibecart-backend.onrender.com/api';
+      
+      const response = await axios.put(`${API_URL}/products/${id}`, {
         ...formData,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock)
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
       });
 
       if (response.data.success) {

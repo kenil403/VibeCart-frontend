@@ -6,6 +6,11 @@ export const getImageUrl = (imagePath) => {
     return 'https://via.placeholder.com/300';
   }
   
+  // If it's a Base64 data URI, return as is
+  if (imagePath.startsWith('data:image/')) {
+    return imagePath;
+  }
+  
   // If it's already a full URL (http/https), return as is
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
     // Replace localhost:5000 with the Render URL if present

@@ -38,10 +38,18 @@ function AddProduct() {
     setErrors([]);
 
     try {
-      const response = await axios.post('https://vibecart-backend.onrender.com/api/products', {
+      const token = localStorage.getItem('token');
+      const API_URL = process.env.REACT_APP_API_URL || 'https://vibecart-backend.onrender.com/api';
+      
+      const response = await axios.post(`${API_URL}/products`, {
         ...formData,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock) || 0
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
       });
 
       if (response.data.success) {
